@@ -24,7 +24,7 @@ echo "TOPDIR:$TOPDIR"
 
 cat >$TOPDIR/env.xml  <<EOF
 <project name="env" default="all" basedir=".">
-    <property name="global.classpath" value="${TOPDIR}/classes"/>
+    <property name="global.classpath" value="${TOPDIR}/classes:${TOPDIR}/dev-init/lib/tpso.jar"/>
     <property name="jar.dir" value="${TOPDIR}/jars-old"/>
     <property name="top.dir" value="${TOPDIR}"/>
 </project>
