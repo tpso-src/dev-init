@@ -7,13 +7,13 @@ else
    THISDIR=`dirname $0`
 fi
 function canonicalPath {
-   local path="$1" ; shift
-   if [ -d "$path" ]
+   local _path="$1" ; shift
+   if [ -d "$_path" ]
    then
-      echo "$(cd "$path" ; pwd)"
+      echo "$(cd "$_path" ; pwd)"
    else
-      local b=$(basename "$path")
-      local p=$(dirname "$path")
+      local b=$(basename "$_path")
+      local p=$(dirname "$_path")
       echo "$(cd "$p" ; pwd)/$b"
    fi
 }
@@ -27,9 +27,12 @@ cat >$TOPDIR/env.xml  <<EOF
     <property name="global.classpath" value="${TOPDIR}/classes:${TOPDIR}/dev-init/lib/tpso.jar"/>
     <property name="jar.dir" value="${TOPDIR}/jars-old"/>
     <property name="top.dir" value="${TOPDIR}"/>
+    <property name="ant.home" value="${TOPDIR}/dev-init/apps/ant"/>
 </project>
 EOF
 
 mkdir -p classes
-#export PATH=${TOPDIR}/dev-init/apps/ant/bin:${TOPDIR}/dev-init/apps/java/bin:$PATH
+export PATH=${TOPDIR}/dev-init/apps/ant/bin:${TOPDIR}/dev-init/apps/java/bin:$PATH
+export ANT_HOME=${TOPDIR}/dev-init/apps/ant
+export JAVA_HOME=${TOPDIR}/dev-init/apps/java
 #export CLASSPATH=/tmp/xerces-2_11_0/xml-apis.jar:/tmp/xerces-2_11_0/xercesImpl.jar
