@@ -32,7 +32,7 @@ cat >$TOPDIR/env.xml  <<EOF
 EOF
 
 mkdir -p classes
-export PATH=${TOPDIR}/dev-init/apps/ant/bin:${TOPDIR}/dev-init/apps/java/bin:$PATH
+export PATH=${TOPDIR}/dev-init/apps/ant/bin:${TOPDIR}/dev-init/apps/java/bin:${TOPDIR}/dev-init/apps/gradle/bin:${TOPDIR}/dev-init/apps/maven/bin:$PATH
 export ANT_HOME=${TOPDIR}/dev-init/apps/ant
 export JAVA_HOME=${TOPDIR}/dev-init/apps/java
 export CLASSPATH=.
