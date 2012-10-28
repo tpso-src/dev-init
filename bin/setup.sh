@@ -20,7 +20,7 @@ function canonicalPath {
 export TOPDIR=$(canonicalPath "$THISDIR/../../")
 echo "TOPDIR:$TOPDIR"
 
-mkdir -p classes
+mkdir -p ${TOPDIR}classes
 
 #########################################################
 # usage
