@@ -90,4 +90,5 @@ export PATH=${TOPDIR}/dev-init/bin:${TOPDIR}/dev-init/apps/ant/bin:${TOPDIR}/dev
 export ANT_HOME=${TOPDIR}/dev-init/apps/ant
 export JAVA_HOME=${TOPDIR}/dev-init/apps/java
 export CLASSPATH=.
+export TOPDIR=${TOPDIR}
 EOF
