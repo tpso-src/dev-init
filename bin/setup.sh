@@ -26,7 +26,7 @@ mkdir -p ${TOPDIR}/classes
 # usage
 #########################################################
 usage() {
-    echo "usage: $0 [-b repopath | --bhs-deployed-repo repopath ]"
+    echo "usage: $0 [-b repopath | --mbb-deployed-repo repopath ]"
 }
 
 
@@ -34,10 +34,10 @@ usage() {
 #########################################################
 # main
 #########################################################
-BHS_DEPLOYED_REPO=
+MBB_DEPLOYED_REPO=
 
-shortoptions='b:'
-longoptions='bhs-deployed-repo:'
+shortoptions='m:'
+longoptions='mbb-deployed-repo:'
 getopt=$(getopt -o $shortoptions --longoptions  $longoptions -- "$@")
 if [ $? != 0 ]; then
    usage
@@ -51,9 +51,9 @@ while true; do
          help
          exit 1
       ;;
-      -b|--bhs-deployed-repo)
+      -m|--mbb-deployed-repo)
          shift
-         BHS_DEPLOYED_REPO=$1
+         MBB_DEPLOYED_REPO=$1
          shift
 				 break
       ;;
@@ -75,9 +75,9 @@ cat >$TOPDIR/env.xml  <<EOF
     <property name="ant.build.javac.target" value="6" />
 		<property name="ant.build.javac.source" value="6" />
 EOF
-if [ -n "$BHS_DEPLOYED_REPO" ] ; then
+if [ -n "$MBB_DEPLOYED_REPO" ] ; then
 cat >>$TOPDIR/env.xml  <<EOF
-		<property name="bhs.deployed.repo" value="${BHS_DEPLOYED_REPO}" />
+		<property name="mbb.deployed.repo" value="${MBB_DEPLOYED_REPO}" />
 EOF
 fi
 
