@@ -72,7 +72,7 @@ cat >$TOPDIR/env.xml  <<EOF
     <property name="jar.dir" value="${TOPDIR}/jars-old"/>
     <property name="top.dir" value="${TOPDIR}"/>
     <property name="ant.home" value="${TOPDIR}/dev-init/apps/ant"/>
-		<property name="ant.build.javac.target" value="6" />
+    <property name="ant.build.javac.target" value="6" />
 		<property name="ant.build.javac.source" value="6" />
 EOF
 if [ -n "$BHS_DEPLOYED_REPO" ] ; then
