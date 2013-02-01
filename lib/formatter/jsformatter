@@ -1,0 +1,5 @@
+#!/bin/sh
+
+DIR=$TOPDIR/tools/lib/formatter
+
+java -jar $DIR/js.jar  $DIR/beautify-cl.js -d $DIR -n -p -i 1 $@
