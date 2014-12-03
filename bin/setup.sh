@@ -36,6 +36,7 @@ usage() {
 #########################################################
 DEPLOYED_REPO=
 BHS=
+MBB=
 
 shortoptions='m:b:'
 longoptions='mbb-deployed-repo:bhs-deployed-repo'
@@ -62,6 +63,7 @@ while true; do
       -m|--mbb-deployed-repo)
          shift
          DEPLOYED_REPO=$1
+				 MBB=1
          shift
 				 break
       ;;
@@ -83,13 +85,15 @@ cat >$TOPDIR/env.xml  <<EOF
     <property name="ant.build.javac.target" value="6" />
 		<property name="ant.build.javac.source" value="6" />
 EOF
-if [ -n "$DEPLOYED_REPO" ] ; then
+if [ -n "$DEPLOYED_REPO" -a -n "$BHS" ] ; then
 cat >>$TOPDIR/env.xml  <<EOF
-	if [ -n "$BHS" ] ; then
 		<property name="bhs.deployed.repo" value="${DEPLOYED_REPO}" />
-	else
+EOF
+fi
+
+if [ -n "$DEPLOYED_REPO" -a -n "$MBB" ] ; then
+cat >>$TOPDIR/env.xml  <<EOF
 		<property name="mbb.deployed.repo" value="${DEPLOYED_REPO}" />
-	fi
 EOF
 fi
 
