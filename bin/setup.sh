@@ -6,7 +6,7 @@ then
 else
    THISDIR=`dirname $0`
 fi
-function canonicalPath {
+canonicalPath() {
    local _path="$1" ; shift
    if [ -d "$_path" ]
    then
@@ -34,10 +34,11 @@ usage() {
 #########################################################
 # main
 #########################################################
-MBB_DEPLOYED_REPO=
+DEPLOYED_REPO=
+BHS=
 
-shortoptions='m:'
-longoptions='mbb-deployed-repo:'
+shortoptions='m:b:'
+longoptions='mbb-deployed-repo:bhs-deployed-repo'
 getopt=$(getopt -o $shortoptions --longoptions  $longoptions -- "$@")
 if [ $? != 0 ]; then
    usage
@@ -51,9 +52,16 @@ while true; do
          help
          exit 1
       ;;
+      -b|--bhs-deployed-repo)
+         shift
+         DEPLOYED_REPO=$1
+         BHS=1
+         shift
+				 break
+			;;
       -m|--mbb-deployed-repo)
          shift
-         MBB_DEPLOYED_REPO=$1
+         DEPLOYED_REPO=$1
          shift
 				 break
       ;;
@@ -75,9 +83,13 @@ cat >$TOPDIR/env.xml  <<EOF
     <property name="ant.build.javac.target" value="6" />
 		<property name="ant.build.javac.source" value="6" />
 EOF
-if [ -n "$MBB_DEPLOYED_REPO" ] ; then
+if [ -n "$DEPLOYED_REPO" ] ; then
 cat >>$TOPDIR/env.xml  <<EOF
-		<property name="mbb.deployed.repo" value="${MBB_DEPLOYED_REPO}" />
+	if [ -n "$BHS" ] ; then
+		<property name="bhs.deployed.repo" value="${DEPLOYED_REPO}" />
+	else
+		<property name="mbb.deployed.repo" value="${DEPLOYED_REPO}" />
+	fi
 EOF
 fi
 
